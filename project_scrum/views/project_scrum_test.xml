@@ -6,7 +6,7 @@
         <field name="model">project.scrum.test</field>
         <field name="type">kanban</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="project_id">
+            <kanban default_group_by="stats_test">
                 <field name="color" />
                 <field name="name" />
                 <field name="sequence_test" />
@@ -104,9 +104,8 @@
                 <header>
                     <field
                         name="stats_test"
-                        string="State"
                         widget="statusbar"
-                        clickable="True"
+                        options="{'clickable': '1', 'fold_field': 'fold'}"
                     />
                 </header>
                 <sheet string="Test Cases">

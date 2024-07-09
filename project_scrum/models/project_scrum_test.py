@@ -30,9 +30,15 @@ class ProjectScrumTest(models.Model):
     description_test = fields.Html(string="Description")
     sequence_test = fields.Integer(string="Sequence", index=True)
     stats_test = fields.Selection(
-        [("draft", "Draft"), ("in progress", "In Progress"), ("cancel", "Cancelled")],
-        string="State",
+        [
+            ("draft", "Draft"),
+            ("in progress", "In Progress"),
+            ("passed", "Passed"),
+            ("not passed", "Not Passed"),
+            ("cancel", "Cancelled"),
+        ],
         required=False,
+        default="draft",
     )
     company_id = fields.Many2one(
         related="project_id.company_id",

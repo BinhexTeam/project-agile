@@ -13,13 +13,16 @@
                 decoration-success="state in('done')"
             >
                 <field name="name" />
-                <!--name of sprint -->
+                <!--name
+                of sprint -->
                 <field name="project_id" />
                 <field name="date_start" />
                 <field name="date_stop" />
-                <!--time to stop -->
+                <!--time
+                to stop -->
                 <field name="planned_hours" widget="float_time" />
-                <!--duration time = stop time - start time -->
+                <!--duration
+                time = stop time - start time -->
                 <field name="state" />
             </tree>
         </field>
@@ -31,20 +34,38 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Scrum Sprint">
-                <!--Header States -->
                 <header>
                     <field
                         name="state"
                         widget="statusbar"
                         options="{'clickable': '1', 'fold_field': 'fold'}"
-                        groups="project.group_project_stages"
                     />
                 </header>
                 <sheet string="Sprint">
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            icon="fa-tasks"
+                            type="action"
+                            name="%(action_ps_sprint_backlog)d"
+                            string="Backlog"
+                            context="{'default_project_id': project_id}"
+                        >
+                            <!-- <field name="task_count" widget="statinfo" string="Backlog" /> -->
+                        </button>
+                        <button
+                            icon="fa-tasks"
+                            type="action"
+                            name="%(action_ps_tc)d"
+                            string="Test Case"
+                            context="{'default_project_id': project_id}"
+                        >
+                            <!-- <field name="task_count" widget="statinfo" string="Backlog" /> -->
+                        </button>
+                    </div>
                     <h1>
                         <field name="name" placeholder="Sprint..." class="oe_inline" />
                     </h1>
-                    <button
+                    <!-- <button
                         class="oe_inline oe_stat_button"
                         type="action"
                         icon="fa-tasks"
@@ -63,7 +84,7 @@
                         context="{'default_project_id': project_id}"
                     >
 
-                    </button>
+                    </button> -->
                     <group colspan="4" col="4">
                         <field name="project_id" />
                         <field name="planned_hours" widget="float_time" />
@@ -75,7 +96,8 @@
                         <field name="scrum_master_id" />
                     </group>
                     <notebook colspan="5">
-                        <!--User Stories -->
+                        <!--User
+                        Stories -->
                         <page string="User Story">
                             <field
                                 colspan="2"
@@ -93,7 +115,8 @@
                             </field>
                         </page>
                         <page string="Review">
-                            <!--page for review -->
+                            <!--page
+                            for review -->
                             <group col="1">
                                 <field name="review" />
                             </group>
@@ -119,7 +142,8 @@
                             </group>
                         </page>
                         <page string="Retrospective">
-                            <!--page for retropective -->
+                            <!--page
+                            for retropective -->
                             <field name="retrospective" />
                         </page>
                     </notebook>
