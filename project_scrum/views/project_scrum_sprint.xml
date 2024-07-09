@@ -35,9 +35,9 @@
                 <header>
                     <field
                         name="state"
-                        string="State"
                         widget="statusbar"
-                        clickable="True"
+                        options="{'clickable': '1', 'fold_field': 'fold'}"
+                        groups="project.group_project_stages"
                     />
                 </header>
                 <sheet string="Sprint">
