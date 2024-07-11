@@ -11,62 +11,80 @@
                 <field name="name" />
                 <field name="sequence_test" />
                 <field name="project_id" />
+                <field name="sprint_id" />
                 <field name="user_story_id_test" />
                 <field name="description_test" />
-                <field name="stats_test" />
+                <field
+                    name="stats_test"
+                    options="{&quot;group_by_tooltip&quot;: {&quot;description&quot;: &quot;Description&quot;}}"
+                />/>
                 <templates>
                     <t t-name="kanban-box">
                         <div
-                            t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click"
+                            t-attf-class="{{!selection_mode ? 'oe_kanban_color_' + kanban_getcolor(record.color.raw_value) : ''}} oe_kanban_card oe_kanban_global_click"
                         >
-                            <div
-                                class="o_dropdown_kanban dropdown"
-                                groups="base.group_user"
-                            >
-                                <a
-                                    class="dropdown-toggle btn"
-                                    role="button"
-                                    data-toggle="dropdown"
-                                    href="#"
-                                    title="Dropdown menu"
-                                >
-                                    <span class="fa fa-bars fa-lg" />
-                                </a>
-                                <ul
-                                    class="dropdown-menu"
-                                    role="menu"
-                                    aria-labelledby="dLabel"
-                                >
-                                    <t t-if="widget.editable">
-                                        <li>
-                                            <a type="edit">Edit Test Case
-                                            </a>
-                                        </li>
-                                    </t>
-                                    <t t-if="widget.deletable">
-                                        <li>
-                                            <a type="delete">Delete</a>
-                                        </li>
-                                    </t>
-                                    <li>
-                                        <ul
-                                            class="oe_kanban_colorpicker"
-                                            data-field="color"
+                            <div class="oe_kanban_content p-2">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="name" />
+                                        </strong>
+                                    </div>
+                                    <div
+                                        class="o_dropdown_kanban dropdown"
+                                        groups="base.group_user"
+                                    >
+                                        <a
+                                            role="button"
+                                            class="dropdown-toggle o-no-caret btn"
+                                            data-bs-toggle="dropdown"
+                                            data-bs-display="static"
+                                            href="#"
+                                            aria-label="Dropdown menu"
+                                            title="Dropdown menu"
+                                        >
+                                            <span class="fa fa-ellipsis-v" />
+                                        </a>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a
+                                                role="menuitem"
+                                                class="dropdown-item"
+                                                type="edit"
+                                            >Edit</a>
+                                            <a
+                                                role="menuitem"
+                                                class="dropdown-item"
+                                                type="delete"
+                                            >Delete</a>
+                                            <div
+                                                role="separator"
+                                                class="dropdown-divider"
+                                            />
+                                            <ul
+                                                class="oe_kanban_colorpicker"
+                                                data-field="color"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_record_body">
+                                    <div>
+                                        <span
+                                            class="fa fa-puzzle-piece me-2"
+                                            aria-label="Project"
+                                            title="Project"
                                         />
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="oe_kanban_content">
-                                <div>
-                                    <b>
-                                        <field name="name" />
-                                    </b>
-                                </div>
-                                <div>
-                                    <field name="stats_test" />
+                                        <field name="project_id" />
+                                    </div>
+                                    <div>
+                                        <field name="sprint_id" />
+                                    </div>
+                                    <div>
+                                        <field name="user_story_id_test" />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="oe_clear" />
+                            <div class="clearfix" />
                         </div>
                     </t>
                 </templates>
@@ -80,17 +98,17 @@
         <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree
-                decoration-bf="stats_test in ('draft')"
-                decoration-primary="stats_test in ('pending')"
-                decoration-muted="stats_test in ('cancel')"
-                decoration-success="stats_test in('done')"
+                decoration-info="stats_test in ('00_draft')"
+                decoration-bf="stats_test in ('01_in_progress')"
+                decoration-muted="stats_test in('02_passed','04_cancel')"
+                decoration-warning="stats_test in ('03_not_passed')"
             >
                 <field name="name" />
                 <field name="sequence_test" />
                 <field name="project_id" />
                 <field name="user_story_id_test" />
                 <field name="description_test" />
-                <field name="stats_test" />
+                <field name="stats_test" string="Stage" />
             </tree>
         </field>
     </record>
@@ -156,7 +174,7 @@
                     <filter
                         name="draft"
                         string="Draft"
-                        domain="[('stats_test','=','draft')]"
+                        domain="[('stats_test','=','00_draft')]"
                     />
                     <separator orientation="vertical" />
                     <separator orientation="vertical" />

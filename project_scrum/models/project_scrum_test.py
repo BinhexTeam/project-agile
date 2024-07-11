@@ -31,14 +31,14 @@ class ProjectScrumTest(models.Model):
     sequence_test = fields.Integer(string="Sequence", index=True)
     stats_test = fields.Selection(
         [
-            ("draft", "Draft"),
-            ("in progress", "In Progress"),
-            ("passed", "Passed"),
-            ("not passed", "Not Passed"),
-            ("cancel", "Cancelled"),
+            ("00_draft", "Draft"),
+            ("01_in_progress", "In Progress"),
+            ("02_passed", "Passed"),
+            ("03_not_passed", "Not Passed"),
+            ("04_cancel", "Cancelled"),
         ],
         required=False,
-        default="draft",
+        default="00_draft",
     )
     company_id = fields.Many2one(
         related="project_id.company_id",
