@@ -83,7 +83,7 @@ class ProjectTask(models.Model):
     value = fields.Selection("_get_value_field")
     risk = fields.Selection("_get_risk_field")
     kano = fields.Selection("_get_kano_field")
-    color = fields.Integer(related="project_id.color")
+    color = fields.Integer(string="Color index")
     user_id = fields.Many2one("res.users", string="User")
 
     @api.depends("sprint_id")

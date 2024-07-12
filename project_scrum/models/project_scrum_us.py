@@ -31,7 +31,7 @@ class ProjectScrumUs(models.Model):
         return self.env["project.task"]._get_kano_field()
 
     name = fields.Char(string="User Story", required=True)
-    color = fields.Integer(related="project_id.color")
+    color = fields.Integer(string="Color Index")
     description = fields.Html()
     actor_ids = fields.Many2many(
         comodel_name="project.scrum.actors",

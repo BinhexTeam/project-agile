@@ -43,7 +43,7 @@ class ProjectScrumTest(models.Model):
     company_id = fields.Many2one(
         related="project_id.company_id",
     )
-    color = fields.Integer(related="project_id.color")
+    color = fields.Integer(string="Color index")
 
     def _resolve_project_id_from_context(self):
         context = self.env.context

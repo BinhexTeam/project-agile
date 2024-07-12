@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_ps_tc_kanban" model="ir.ui.view">
         <field name="name">project.scrum.test.kanban</field>
         <field name="model">project.scrum.test</field>
@@ -17,7 +16,7 @@
                 <field
                     name="stats_test"
                     options="{&quot;group_by_tooltip&quot;: {&quot;description&quot;: &quot;Description&quot;}}"
-                />/>
+                />
                 <templates>
                     <t t-name="kanban-box">
                         <div
@@ -112,7 +111,7 @@
             </tree>
         </field>
     </record>
-    <!--test case form view -->
+
     <record id="view_ps_tc_form" model="ir.ui.view">
         <field name="name">project.scrum.test.form</field>
         <field name="model">project.scrum.test</field>
@@ -142,6 +141,10 @@
                             name="user_story_id_test"
                             domain="[('project_id', '=', project_id)]"
                             context="{'default_project_id': project_id}"
+                        />
+                        <field
+                            name="sprint_id"
+                            domain="[('project_id', '=', project_id)]"
                         />
                     </group>
                     <notebook>
